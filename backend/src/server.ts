@@ -1,20 +1,29 @@
-// Import the 'express' module
 import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import './db/config'; // This will initialize the database connection
+import authRoutes from './routes/auth';
+import transactionRoutes from './routes/transactions';
 
-// Create an Express application
+dotenv.config();
+
 const app = express();
+const port = process.env.PORT || 5001;
 
-// Set the port number for the server
-const port = 3000;
+// Middleware
+app.use(cors());
+app.use(express.json());
 
-// Define a route for the root path ('/')
-app.get('/', (req, res) => {
-  // Send a response to the client
-  res.send('Hello, TypeScript + Node.js + Express!');
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/transactions', transactionRoutes);
+
+// Health check route
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok' });
 });
 
-// Start the server and listen on the specified port
+// Start server
 app.listen(port, () => {
-  // Log a message when the server is successfully running
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on port ${port}`);
 });
