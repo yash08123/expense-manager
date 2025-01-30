@@ -10,7 +10,7 @@ if (!process.env.DATABASE_URL) {
     throw new Error('DATABASE_URL environment variable is not set');
 }
 
-// Create connection configuration
+// Create connection 
 const config = {
     connectionString: process.env.DATABASE_URL,
     ssl: true,
@@ -32,7 +32,7 @@ async function setupDatabase() {
     try {
         console.log('Attempting to connect to database...');
         
-        // Try to connect with retries
+       
         for (let i = 0; i < 3; i++) {
             try {
                 client = await pool.connect();
@@ -49,7 +49,7 @@ async function setupDatabase() {
             throw new Error('Failed to connect to database after 3 attempts');
         }
 
-        // Read and execute the init.sql file
+  
         console.log('Reading init.sql file...');
         const initSql = fs.readFileSync(path.join(__dirname, 'init.sql'), 'utf8');
         console.log('Executing database schema...');
@@ -86,7 +86,7 @@ async function setupDatabase() {
         if (client) {
             try {
                 console.log('Releasing database client...');
-                await client.release(true); // Force release
+                await client.release(true); 
             } catch (err) {
                 console.error('Error releasing client:', err);
             }
