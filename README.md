@@ -2,6 +2,19 @@
 
 A full-stack expense tracking application featuring user authentication, transaction management, and expense analysis visualization built with Node.js, TypeScript, and PostgreSQL.
 
+- Login
+![alt text](images/image.png)
+
+-Register
+![alt text](images/image-1.png)
+
+- Dashboard
+![alt text](images/image-2.png)
+
+![alt text](images/image-3.png)
+
+
+
 ## Features
 
 - 🔐 JWT-based User Authentication
